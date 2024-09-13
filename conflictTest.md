@@ -1,1 +1,1 @@
-Testing conflics
+Testing conflicts
