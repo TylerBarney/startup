@@ -47,3 +47,14 @@ Mock Up of Viewing Item Details
   - Retrieving item details
 - **DB/Login** - Ability to create accounts and log in users. Their credentials will be stored securely in the database. Users cannot add items unless they are authenticated. The database also stores shop items with associated information and the number of views.
 - **WebSocket** - When a user clicks on an item, the number of views on the item will be incremented and broadcast to all other users in real time.
+
+## HTML deliverable
+
+For this deliverable I built out the structure of my application using HTML.
+
+- [ ] **HTML pages** - Multiple HTML pages that will eventually become components. This includes: login page, main store front, view item page and add item page.
+- [ ] **Links** - Link in navigation bar which takes you to the GitHub repo. Clicking login on any of the pages directs you to the login page. Clicking on the example item on the main store front takes you to the example item page. An add item button will navigate to the add item page. Finally, clicking on the top logo takes you to the main store front.
+- [ ] **Text** - The example item has text on both the main store front and in the item view page. Text used in the navigation bar and throughout the app to make the user experience easier.
+- [ ] **Images** - Example item has images and the navigation bar has logo.
+- [ ] **DB/Login** - Input boxes on login page with submit button or create account button. Creating item page also has input boxes for all the item details. Throughout the application, all input boxes that are required will be marked as required.
+- [ ] **WebSocket** - A place holder text box is placed at the bottom of the example item card and in the example item page for when websockets eventually update view count on an item.
