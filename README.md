@@ -4,7 +4,7 @@
 
 ### Elevator pitch
 
-We all know the feeling of spending hours on a Saturday clicking through links, hunting down the best deals on the best items. Oftentimes, these great deals come in the form of promotion codes offered by influencers. The problem is, unless you're following these influencers on one of a million different social media platforms, you’ll never even know these promo codes exist! Well, not anymore. Thanks to ShopDepot, the whole process is streamlined. Influencers simply post items with promotions to ShopDepot, and consumers have a one stop shop to check out their offerings. It's like Amazon, but for great products and even better deals!
+We all know the feeling of spending hours on a Saturday clicking through links, hunting down the best deals on the best items. Oftentimes, these great deals come in the form of promotion codes offered by influencers. The problem is, unless you're following these influencers on one of a million different social media platforms, you’ll never even know these promo codes exist! Well, not anymore. Thanks to ShopDepot, the whole process is streamlined. Influencers simply post items with their description, links and promotions to ShopDepot, and consumers have a one stop shop to check out their offerings. If the consumer likes the item, all they have to do is click the link and enter the promo code to save big! It's like Amazon, but for great products and even better deals!
 
 ### Design
 Mock Up of Home Screen
