@@ -45,6 +45,7 @@ Mock Up of Viewing Item Details
   - Retrieving all shop items from database
   - Adding items to database
   - Retrieving item details
+  - Third party API to validate email and check for spam
 - **DB/Login** - Ability to create accounts and log in users. Their credentials will be stored securely in the database. Users cannot add items unless they are authenticated. The database also stores shop items with associated information and the number of views.
 - **WebSocket** - When a user clicks on an item, the number of views on the item will be incremented and broadcast to all other users in real time.
 
