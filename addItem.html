@@ -5,21 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>ShopDepot</title>
         <link rel="icon" href="res/ShopDepotIcon.png" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main.css" />
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
         <header>
-            <nav>
-                <a href="index.html">
-                    <img src="/res/ShopDepotLogo.png" height="30px"/>
-                </a>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="addItem.html">Add Item</a></li>
-                    <li><a href="login.html">Login</a></li>
-                </ul>
-                <div>Username placeholder</div>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand navbar-logo" href="index.html">
+                            <img src="/res/ShopDepotLogo.png" height="30px"/>
+                        </a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li ><a href="addItem.html">Add Item</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
             </nav>
-            <hr />
         </header>
 
         <main>
