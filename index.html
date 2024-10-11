@@ -36,8 +36,8 @@
 
         <main>
             <!----Where database content showing shop items will go---->
-            <a href="itemDetails.html">
-                <div style="width:200px; height:300px; border:thin solid black;">
+            <div class="items-display">
+                <a href="itemDetails.html" class="item-card">
                     <img src="res/origamiswan.jpeg" width="150px"/>
                     <div class="item-card-title">Example Item</div>
                     <div class="item-card-info">
@@ -45,14 +45,34 @@
                         <img src="res/view-icon-eye.jpeg" width="15px" />
                         <div id="views">10</div> <!----Where websocket info will go---->
                     </div>
-                </div>
-            </a>
+                </a>
+                <a href="itemDetails.html" class="item-card">
+                    <img src="res/origamiswan.jpeg" width="150px" />
+                    <div class="item-card-title">Example Item</div>
+                    <div class="item-card-info">
+                        <div id="price">$10</div>
+                        <img src="res/view-icon-eye.jpeg" width="15px" />
+                        <div id="views">10</div> <!----Where websocket info will go---->
+                    </div>
+                </a>
+                <a href="itemDetails.html" class="item-card">
+                    <img src="res/origamiswan.jpeg" width="150px"/>
+                    <div class="item-card-title">Example Item</div>
+                    <div class="item-card-info">
+                        <div id="price">$10</div>
+                        <img src="res/view-icon-eye.jpeg" width="15px" />
+                        <div id="views">10</div> <!----Where websocket info will go---->
+                    </div>
+                </a>
+            </div>
         </main>
 
         <footer>
             <hr />
-            <p>Tyler Barney</p>
-            <a href="https://github.com/TylerBarney/startup">GitHub Repo</a>
+            <div class="footer">
+                <p>Tyler Barney</p>
+                <a href="https://github.com/TylerBarney/startup">GitHub Repo</a>
+            </div>
         </footer>
     </body>
 </html>
