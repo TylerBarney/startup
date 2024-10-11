@@ -14,7 +14,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="index.html">
                     <img src="/res/ShopDepotLogo.png" height="30px"/>
@@ -25,7 +25,7 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="index.html">Home</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="addItem.html">Add Item</a>
@@ -46,31 +46,45 @@
 
         <main>
             <!----Where database content showing shop items will go---->
+            
             <div class="items-display">
-                <div class="card" style="width: 200px; height: 300px;">
-                    <img src="..." class="card-img-top" alt="...">
+                <a href="itemDetails.html" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-                <a href="itemDetails.html" class="item-card">
-                    <img src="res/origamiswan.jpeg" width="max" />
-                    <div class="item-card-title">Example Item</div>
-                    <div class="item-card-info">
-                        <div id="price">$10</div>
-                        <img src="res/view-icon-eye.jpeg" width="15px" />
-                        <div id="views">10</div> <!----Where websocket info will go---->
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
                     </div>
                 </a>
-                <a href="itemDetails.html" class="item-card">
-                    <img src="res/origamiswan.jpeg" width="max"/>
-                    <div class="item-card-title">Example Item</div>
-                    <div class="item-card-info">
-                        <div id="price">$10</div>
-                        <img src="res/view-icon-eye.jpeg" width="15px" />
-                        <div id="views">10</div> <!----Where websocket info will go---->
+                <a href="itemDetails.html" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
+                    </div>
+                </a>
+                <a href="itemDetails.html" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
                     </div>
                 </a>
             </div>
