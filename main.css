@@ -46,8 +46,21 @@
     align-self: center;
 }
 
+.display-flex {
+    display: flex; /* Enables flexbox layout */
+}
+.flex-direction-row {
+    flex-direction: row;
+}
+.flex-direction-column {
+    flex-direction: column;
+}
+
 @media (max-width: 991.98px) {
     .items-display {
       justify-content: center;
     }
-  }
+    .my-carousel {
+        max-width: 70%;
+    }
+}

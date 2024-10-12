@@ -48,7 +48,7 @@
             <!----Where database content showing shop items will go---->
             
             <div class="items-display">
-                <a href="itemDetails.html" class="card">
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
                     <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
                     <div class="card-body">
                         <h5 class="card-title">Example Item</h5>
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="itemDetails.html" class="card">
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
                     <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
                     <div class="card-body">
                         <h5 class="card-title">Example Item</h5>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="itemDetails.html" class="card">
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
                     <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
                     <div class="card-body">
                         <h5 class="card-title">Example Item</h5>
@@ -152,6 +152,79 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- add Item Modal -->
+            <div class="modal fade" id="itemDetailsModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="itemDetailsModalLabel">Item Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid"">
+                                <div class="row">
+                                    <div class="col-lg-4 display-flex flex-direction-row justify-content-center align-items-center">
+                                        <div class="my-carousel">
+                                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+                                                <div class="carousel-indicators">
+                                                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                </div>
+                                                <div class="carousel-inner">
+                                                  <div class="carousel-item active">
+                                                    <img src="res/origamiswan.jpeg" class="d-block w-100">
+                                                  </div>
+                                                  <div class="carousel-item">
+                                                    <img src="res/origamiswan.jpeg" class="d-block w-100">
+                                                  </div>
+                                                  <div class="carousel-item">
+                                                    <img src="res/origamiswan.jpeg" class="d-block w-100">
+                                                  </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                  <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                  <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-lg-8 display-flex flex-direction-column">
+                                        <h4>Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers</h1>
+                                        <p>
+                                            This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease.
+                                            <br>
+                                            The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.
+                                        </p>
+                                        
+                                        <div id="links">
+                                            <label>Links:</label>
+                                            <a href="https://amazon.com">Amazon</a>
+                                        </div>
+                                        
+                                        <div id="promo-code-div">
+                                            <label>Promo Code:</label>
+                                            <span id="promoCode">THISISAPROMOCODE</span>
+                                        </div>
+                            
+                                        <!----Where websocket info about number of views will go---->
+                                        <div id="views" class="viewClass">
+                                            <label for="views">Views:</label>
+                                            <span id="views">30</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
