@@ -46,8 +46,85 @@
 
         <main>
             <!----Where database content showing shop items will go---->
-            
             <div class="items-display">
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
+                    </div>
+                </a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
+                    </div>
+                </a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
+                    </div>
+                </a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
+                    </div>
+                </a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
+                    </div>
+                </a>
+                <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
+                    <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
+                    <div class="card-body">
+                        <h5 class="card-title">Example Item</h5>
+                        <div class="card-text">
+                            <div id="card-price">$10</div>
+                            <div id="card-views">
+                                10
+                                <i class="bi bi-eye"></i>
+                            </div> <!----Where websocket info will go---->
+                        </div>
+                    </div>
+                </a>
                 <a href="" data-bs-toggle="modal" data-bs-target="#itemDetailsModal" class="card">
                     <img src="res/origamiswan.jpeg" class="card-img-top" alt="item image">
                     <div class="card-body">
@@ -163,18 +240,18 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="itemDetailsModalLabel">Item Details</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid"">
                                 <div class="row">
                                     <div class="col-lg-4 display-flex flex-direction-row justify-content-center align-items-center mb-3">
                                         <div class="my-carousel">
-                                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+                                            <div id="carouselIndicators" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
                                                 <div class="carousel-indicators">
-                                                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                  <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"></button>
+                                                  <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"></button>
+                                                  <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"></button>
                                                 </div>
                                                 <div class="carousel-inner">
                                                   <div class="carousel-item active">
@@ -187,12 +264,12 @@
                                                     <img src="res/origamiswan.jpeg" class="d-block w-100">
                                                   </div>
                                                 </div>
-                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                                                  <span class="carousel-control-prev-icon"></span>
                                                   <span class="visually-hidden">Previous</span>
                                                 </button>
-                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+                                                  <span class="carousel-control-next-icon"></span>
                                                   <span class="visually-hidden">Next</span>
                                                 </button>
                                             </div>

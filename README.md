@@ -59,3 +59,14 @@ For this deliverable I built out the structure of my application using HTML.
 - [x] **Images** - Example item has images and the navigation bar has logo.
 - [x] **DB/Login** - Input boxes on login page with submit button or create account button. Creating item page also has input boxes for all the item details. Throughout the application, all input boxes that are required will be marked as required. Includes, a place holder for the api service that will check if email is valid.
 - [x] **WebSocket** - A place holder text box is placed at the bottom of the example item card and in the example item page for when websockets eventually update view count on an item.
+
+## CSS deliverable
+
+For this deliverable I styled the application with the Bootstrap framework. Styling may need to be changed to display the items when the item information comes from the database.
+
+- [x] **Header, footer, and main content body**
+- [x] **Navigation elements** - I added a Bootstrap nav bar. Styled properly with login button on far right.
+- [x] **Responsive to window resizing** - Resized page, navbar and modals to match screen size.
+- [x] **Application elements** - Styled application elements using Bootstrap
+- [x] **Application text content** - Consistent text styling across application
+- [x] **Application images** - I used Bootstrap cards to display the item images and then a carousel to display the item image when inside the item details.
