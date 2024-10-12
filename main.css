@@ -55,6 +55,9 @@
 .flex-direction-column {
     flex-direction: column;
 }
+.view-class {
+    align-self: flex-end;
+}
 
 @media (max-width: 991.98px) {
     .items-display {
