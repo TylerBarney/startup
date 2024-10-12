@@ -28,7 +28,7 @@
                         <a class="nav-link" href="index.html">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="addItem.html">Add Item</a>
+                        <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#addItemModal">Add Item</a>
                       </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -91,30 +91,70 @@
 
             <!-- login modal -->
             <div class="modal fade" id="loginModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                          <label for="emailInput" class="form-label">Email address</label>
-                          <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="passwordInput" class="form-label">Password</label>
-                          <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
-                        </div>
-                      </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Create Account</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Login</button>
-                </div>
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                            <label for="emailInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                            <label for="passwordInput" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="passwordInput" placeholder="Password" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Create Account</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Login</button>
+                    </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- add Item Modal -->
+            <div class="modal fade" id="addItemModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addItemModalLabel">Add Item</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="item-name-textbox" class="form-label">Item Name:</label>
+                                    <input id="item-name-textbox" class="form-control"type="text" placeholder="Item" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="img-upload" class="form-label">Upload Images:</label>
+                                    <input id="img-upload" class="form-control" type="file" name="img" accept="image/*" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="item-description" class="form-label">Description:</label>
+                                    <textarea id="item-description" class="form-control" name="item-description" rows="4" cols="50" placeholder="Description" required="true" /></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="item-link" class="form-label">Link:</label>
+                                    <input id="item-link"class="form-control"  type="text" placeholder="Enter Link" required="true" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="promo-code" class="form-label">Promo Code:</label>
+                                    <input id="promo-code" class="form-control" type="text" placeholder="Enter Promo Code" required="true" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 
