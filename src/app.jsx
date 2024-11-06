@@ -4,9 +4,9 @@ import '../src/app.css';
 import ItemCard from './components/itemCard';
 import { Button } from 'bootstrap';
 import LoginModal from './components/LoginModal';
+import AddItemModal from './components/AddItemModal';
 
 export default function App() {
-  const [modalShow, setModalShow] = React.useState(false);
   return (
 <>
 <header>
@@ -24,7 +24,7 @@ export default function App() {
                 <a className="nav-link" href="index.html">Home</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="" data-bs-toggle="modal" data-bs-target="#addItemModal">Add Item</a>
+                  <AddItemModal />
                 </li>
             </ul>
             <ul className="navbar-nav ms-auto">
@@ -34,7 +34,7 @@ export default function App() {
             </ul>
             </div>
         </div>
-        </nav>
+      </nav>
 </header>
 
 <main>

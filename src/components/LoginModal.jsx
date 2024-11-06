@@ -1,10 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
 
 export default function LoginModal() {
   const [show, setShow] = useState(false);
-  const [isMobile, setMobile] = useState(false)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,7 +17,7 @@ export default function LoginModal() {
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+            <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <Form>
@@ -33,12 +32,12 @@ export default function LoginModal() {
             </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Create Account
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Login
-          </Button>
+            <Button variant="secondary" onClick={handleClose}>
+                Create Account
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+                Login
+            </Button>
         </Modal.Footer>
       </Modal>
     </>
