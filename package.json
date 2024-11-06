@@ -13,5 +13,10 @@
   "license": "ISC",
   "devDependencies": {
     "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "react-bootstrap": "^2.10.5"
   }
 }
