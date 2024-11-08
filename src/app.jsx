@@ -1,7 +1,8 @@
 import React from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/app.css';
-import ItemCard from './components/itemCard';
+import Store from './components/Store'
 import LoginModal from './components/LoginModal';
 import AddItemModal from './components/AddItemModal';
 import { useState } from 'react';
@@ -69,7 +70,7 @@ export default function App() {
   }
 
   return (
-<>
+<BrowserRouter>
 <header>
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <div className="container-fluid">
@@ -102,16 +103,10 @@ export default function App() {
       </nav>
 </header>
 
-<main>
-    <div className="items-display">
-      {
-        itemList.map((item, index) => (
-          <ItemCard key={index} item={item} />
-        ))
-      }
-    </div>
-
-</main>
+<Routes>
+  <Route path='/' element={<Store itemList={itemList} />} exact />
+  <Route path='*' element={<NotFound />} />
+</Routes>
 
 <footer>
     <hr />
@@ -120,6 +115,10 @@ export default function App() {
         <a href="https://github.com/TylerBarney/startup">GitHub Repo</a>
     </div>
 </footer>
-    </>
+</BrowserRouter>
   )
+}
+
+function NotFound() {
+  return <main className='container-fluid text-center'>404: Return to sender. Address unknown.</main>;
 }
