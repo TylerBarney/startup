@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import {Button, Modal, Form, Row, Col, Tooltip, OverlayTrigger} from 'react-bootstrap';
 
-export default function AddItemModal({handleAddItem}) {
+export default function AddItemModal({handleAddItem, isLoggedIn}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -35,7 +35,6 @@ export default function AddItemModal({handleAddItem}) {
       Please Login
     </Tooltip>
   );
-  const isLoggedIn = false
 
   return (
     <>

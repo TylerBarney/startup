@@ -83,7 +83,7 @@ export default function App() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <AddItemModal handleAddItem={ handleAddItem }/>
+                  <AddItemModal handleAddItem={ handleAddItem } isLoggedIn={ isLoggedIn }/>
                 </li>
             </ul>
             <ul className="navbar-nav ms-auto">
