@@ -30,6 +30,7 @@
     height: 300px;
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 .card-body{
@@ -48,8 +49,11 @@
 .card-img-top{
     height: 200px; 
 }
-.spaced-icon{
+.spaced-eye-icon{
     margin-left: 5px;
+}
+.spaced-login-icon{
+    margin-right: 5px;
 }
 .carousel-img{
     aspect-ratio: 1;

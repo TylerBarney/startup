@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
+import {Button, Modal, Form, Row, Col, Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 export default function AddItemModal({handleAddItem}) {
   const [show, setShow] = useState(false);
@@ -30,12 +30,30 @@ export default function AddItemModal({handleAddItem}) {
     })
     handleClose()
   };
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Please Login
+    </Tooltip>
+  );
+  const isLoggedIn = false
 
   return (
     <>
-        <button className="nav-link" onClick={handleShow}>
-            Add Item
-        </button>
+        {!isLoggedIn ? (
+            <OverlayTrigger
+                placement="right"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
+            >
+                <button className="nav-link">
+                Add Item
+                </button>
+            </OverlayTrigger>
+        ) : (
+            <button className="nav-link" onClick={handleShow}>
+                Add Item
+            </button>
+        )}
 
       <Modal show={show} onHide={handleClose} fullscreen='sm-down' centered scrollable>
         <Modal.Header closeButton>

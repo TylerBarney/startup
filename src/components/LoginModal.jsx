@@ -19,7 +19,7 @@ export default function LoginModal({setIsLoggedIn}) {
   return (
     <>
         <button className="nav-link" onClick={handleShow}>
-            <i className="bi bi-box-arrow-in-right"></i>
+            <i className="bi bi-box-arrow-in-right spaced-login-icon"></i>
             Login
         </button>
 
