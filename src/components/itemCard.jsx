@@ -13,7 +13,7 @@ export default function ItemCard({ imgSrc, itemName, itemPrice, itemViews }) {
                     <div id="card-price">${itemPrice}</div>
                     <div id="card-views">
                         {itemViews}
-                        <i className="bi bi-eye"></i>
+                        <i className="bi bi-eye spaced-icon"></i>
                     </div> 
                 </div>
             </div>

@@ -5,8 +5,66 @@ import ItemCard from './components/itemCard';
 import { Button } from 'bootstrap';
 import LoginModal from './components/LoginModal';
 import AddItemModal from './components/AddItemModal';
+import { useState } from 'react';
 
 export default function App() {
+  
+  let dummyItemList = [
+    {
+      itemName: 'Origami Swan',
+      itemImages: ['/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'Lots and lots of description',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemImages: ['/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'Lots and lots of description',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemImages: ['/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'Lots and lots of description',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemImages: ['/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'Lots and lots of description',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemImages: ['/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'Lots and lots of description',
+      itemViews: 10
+    },
+  ]
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [itemList, setItemList] = useState([...dummyItemList])
+
+  const handleAddItem = (item) => {
+    setItemList(prevList => [...prevList, item]);  // Use spread operator to add item
+    console.log(itemList);
+  }
+
+
   return (
 <>
 <header>
@@ -24,12 +82,19 @@ export default function App() {
                 <a className="nav-link" href="index.html">Home</a>
                 </li>
                 <li className="nav-item">
-                  <AddItemModal />
+                  <AddItemModal handleAddItem={ handleAddItem }/>
                 </li>
             </ul>
             <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
-                    <LoginModal />
+                    {!isLoggedIn && (
+                        <LoginModal setIsLoggedIn={ () => setIsLoggedIn(true)}/>
+                    )}
+                    {isLoggedIn && (
+                        <button className="nav-link" onClick={ () => setIsLoggedIn(false) }>
+                          Logout
+                        </button>
+                    )}
                 </li>
             </ul>
             </div>
@@ -39,14 +104,11 @@ export default function App() {
 
 <main>
     <div className="items-display">
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
-      <ItemCard imgSrc='/origamiswan.jpeg' itemName={'Origami Swan'} itemPrice={10} itemViews={10} />
+      {
+        itemList.map((item, index) => (
+          <ItemCard key={index} imgSrc={item.itemImages[0]} itemName={item.itemName} itemPrice={item.itemPrice} itemViews={item.itemViews} />
+        ))
+      }
     </div>
 
     <div className="modal fade" id="addItemModal" tabindex="-1">
