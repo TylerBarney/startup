@@ -51,7 +51,9 @@
 .spaced-icon{
     margin-left: 5px;
 }
-
+.carousel-img{
+    aspect-ratio: 1;
+}
 .display-flex {
     display: flex; /* Enables flexbox layout */
 }

@@ -10,15 +10,17 @@ export default function AddItemModal({handleAddItem}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const itemName = e.target.formItemName.value
+    const itemName = e.target.formShortItemName.value
     const itemImages = Array.from(e.target.formItemImage.files).map(file => URL.createObjectURL(file))
     const itemDescription = e.target.formItemDescription.value
     const itemPrice = parseFloat(e.target.formItemPrice.value)
     const itemLink = e.target.formItemLink.value
     const itemPromoCode = e.target.formPromoCode.value
+    const itemFullName = e.target.formFullItemName.value
     const itemViews = 0
     handleAddItem({
         itemName,
+        itemFullName,
         itemImages,
         itemPrice,
         itemPromoCode,
@@ -42,12 +44,16 @@ export default function AddItemModal({handleAddItem}) {
         <Modal.Body>
             <Form id="formAddItem" onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <Form.Label>Item Name:</Form.Label>
-                    <Form.Control id="formItemName" type="text" placeholder='Item' required />
+                    <Form.Label>Short Item Name:</Form.Label>
+                    <Form.Control id="formShortItemName" type="text" placeholder='Item' required />
+                </div>
+                <div className="mb-3">
+                    <Form.Label>Full Item Name:</Form.Label>
+                    <Form.Control id="formFullItemName" as='textarea' rows={2} cols={50} placeholder='Full Item Name' required />
                 </div>
                 <div className="mb-3">
                     <Form.Label>Upload Images:</Form.Label>
-                    <Form.Control id="formItemImage" type='file' accept='image/*' required />
+                    <Form.Control id="formItemImage" type='file' accept='image/*' multiple required />
                 </div>
                 <div className="mb-3">
                     <Form.Label>Description:</Form.Label>
