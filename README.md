@@ -70,3 +70,18 @@ For this deliverable I styled the application with the Bootstrap framework. Styl
 - [x] **Application elements** - Styled application elements using Bootstrap
 - [x] **Application text content** - Consistent text styling across application
 - [x] **Application images** - I used Bootstrap cards to display the item images and then a carousel to display the item image when inside the item details.
+
+## React deliverable
+
+I used React and Javascript to allow users to interact with the store front and add items.
+
+- [x] **Bundled and transpiled** - done!
+- [x] **Components** - Store front is the main component, login and add item modals with item card component which opens a modal when clicked, 
+  - [x] **login** - When you press the login button, it launches the login modal. When logged in the modal will close and the button will be updated to log out
+  - [x] **add item** - When you press the add item button it launches the add item modal. Here the user can put in the item information which will then be displayed on the store front.
+  - [x] **item card** - Item card displays abridged information about the items stored in local storage.
+  - [x] **item details** - Clicking on an item card will launch a modal containing all the information about the item.
+  - [x] **database** - Displayed the items in the store from local storage. When items are updated the local storage is updated and the new item is displayed.
+  - [x] **WebSocket** - Section on each item for tracking views which will be updated by websockets when we get there.
+- [x] **Router** - Routing to the store front.
+- [x] **Hooks** - uses 'useState' to track modal showing and closing. Also uses 'useState' to track logged in status and to track the items displayed.
