@@ -70,31 +70,24 @@ app.use(`/api`, apiRouter)
 
 apiRouter.post(`/auth/create`, async (req, res) => {
     const user = users[req.body.email]
-    console.log(users)
     if (user) {
         return res.status(409).send({ msg: 'Existing user'})
     } else {
-        fetch(`https://api.usercheck.com/email/${email}?key=2n0aEAzowiX9QTLpjUACKWoHzBnagobp`)
+        fetch(`https://api.usercheck.com/email/${req.body.email}?key=2n0aEAzowiX9QTLpjUACKWoHzBnagobp`)
           .then((response) => response.json())
           .then((data) => {
             if (data['disposable']) {
-              setShowBadCredentials(false)
-              setShowUserTaken(false)
-              setShowDisposable(true)
+                return res.status(406).send({ msg: 'Bad email'})
             } else {
-              setLogin(true)
-              handleClose();
+                const user = { email: req.body.email, password: req.body.password, token: uuid.v4() }
+                users[user.email] = user
+                return res.send({ token: user.token })
         }})
-        const user = { email: req.body.email, password: req.body.password, token: uuid.v4() }
-        users[user.email] = user
-        return res.send({ token: user.token })
     }
 })
 
 apiRouter.post('/auth/login', async (req, res) => {
-    console.log(users)
     const user = users[req.body.email]
-    console.log(users)
     if(user) {
         if (req.body.password === user.password) {
             user.token = uuid.v4()

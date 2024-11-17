@@ -36,10 +36,10 @@ export default function App() {
       }
     })
     if (response?.status === 200){
+
       return true
-      setIsLoggedIn(true)
     }
-    return
+    return false
   }
 
   async function createAccount(email, password) {
@@ -52,8 +52,8 @@ export default function App() {
     })
     if (response?.status === 200){
       return true
-      setIsLoggedIn(true)
     }
+    return false
   }
 
   async function getItems() {
@@ -84,7 +84,7 @@ export default function App() {
             <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
                     {!isLoggedIn && (
-                        <LoginModal login={ (email, password) => logIn(email, password)} create= { (email, password) => createAccount(email, password)} />
+                        <LoginModal login={ (email, password) => logIn(email, password)} create= { (email, password) => createAccount(email, password)} setLogin={setIsLoggedIn} />
                     )}
                     {isLoggedIn && (
                         <button className="nav-link" onClick={ () => setIsLoggedIn(false) }>
