@@ -2,14 +2,16 @@ import React from 'react';
 import { useState } from 'react';
 import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
 
-export default function LoginModal({login, create}) {
+export default function LoginModal({login, create, setLogin}) {
   const [show, setShow] = useState(false);
   const [button, setButton] = useState(null)
   const [showUserTaken, setShowUserTaken] = useState(false)
   const [showBadCredentials, setShowBadCredentials] = useState(false)
   const [showDisposable, setShowDisposable] = useState(false)
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false)
+  };
   const handleShow = () => setShow(true);
 
   const handleSubmit = (e) => {
@@ -23,33 +25,26 @@ export default function LoginModal({login, create}) {
           setShowBadCredentials(true)
           setShowUserTaken(false)
           setShowDisposable(false)
-          return
+        } else {
+          setLogin(true)
+          handleClose();
         }
-        handleClose();
       })
     } else {
       create(email, password)
       .then((isLoggedIn) => {
-        if (!isLoggedIn){
+        if (isLoggedIn === 'existingUser'){
           setShowBadCredentials(false)
           setShowUserTaken(true)
           setShowDisposable(false)
-          return
+        } else if (isLoggedIn === 'badEmail') {
+          setShowBadCredentials(false)
+          setShowUserTaken(false)
+          setShowDisposable(true)
         } else {
-          fetch(`https://api.usercheck.com/email/${email}?key=2n0aEAzowiX9QTLpjUACKWoHzBnagobp`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data['disposable']) {
-              setShowBadCredentials(false)
-              setShowUserTaken(false)
-              setShowDisposable(true)
-              return
-            } else {
-              hand
-            }
-          })
+          setLogin(true)
+          handleClose()
         }
-        handleClose();
       })
     }
   };
