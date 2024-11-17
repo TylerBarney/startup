@@ -85,3 +85,15 @@ I used React and Javascript to allow users to interact with the store front and 
   - [x] **WebSocket** - Section on each item for tracking views which will be updated by websockets when we get there.
 - [x] **Router** - Routing to the store front.
 - [x] **Hooks** - uses 'useState' to track modal showing and closing. Also uses 'useState' to track logged in status and to track the items displayed.
+
+## Service deliverable
+
+➡️ The following is an example of the required information for the `Startup Service` deliverable
+
+For this deliverable I added backend endpoints that receives votes and returns the voting totals.
+
+- [x] **Node.js/Express HTTP service** - done!
+- [x] **Static middleware for frontend** - done!
+- [ ] **Calls to third party endpoints** - I didn't have time to implement this. 😔
+- [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for voting.
+- [x] **Frontend calls service endpoints** - I did this using the fetch function.
