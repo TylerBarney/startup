@@ -21,9 +21,6 @@ export default function App() {
         'Content-type': 'application/json; charset=UTF-8',
       }
     })
-    if (response?.status === 200){
-      setIsLoggedIn(true)
-    }
     getItems()
   }
 
@@ -36,7 +33,6 @@ export default function App() {
       }
     })
     if (response?.status === 200){
-
       return true
     }
     return false
@@ -51,9 +47,12 @@ export default function App() {
       }
     })
     if (response?.status === 200){
-      return true
+      return 'loggedIn'
+    } else if (response?.status === 406){
+      return 'badEmail'
+    } else {
+      return 'existingUser'
     }
-    return false
   }
 
   async function getItems() {
