@@ -11,6 +11,7 @@ export default function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [itemList, setItemList] = useState([])
+  const [token, setToken] = useState('')
 
   useEffect(() => {getItems() })
   const handleAddItem = async (item) => {
@@ -33,6 +34,7 @@ export default function App() {
       }
     })
     if (response?.status === 200){
+      setToken(await response.json())
       return true
     }
     return false
@@ -47,12 +49,25 @@ export default function App() {
       }
     })
     if (response?.status === 200){
+      setToken(await response.json())
       return 'loggedIn'
     } else if (response?.status === 406){
       return 'badEmail'
     } else {
       return 'existingUser'
     }
+  }
+
+  async function logout(){
+    fetch(`/api/auth/logout`, {
+      method: 'delete',
+      body: JSON.stringify( {token: token} ),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    setToken('')
+    setIsLoggedIn(false)
   }
 
   async function getItems() {
@@ -86,7 +101,7 @@ export default function App() {
                         <LoginModal login={ (email, password) => logIn(email, password)} create= { (email, password) => createAccount(email, password)} setLogin={setIsLoggedIn} />
                     )}
                     {isLoggedIn && (
-                        <button className="nav-link" onClick={ () => setIsLoggedIn(false) }>
+                        <button className="nav-link" onClick={ () => logout() }>
                           Logout
                         </button>
                     )}
