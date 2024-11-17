@@ -2,8 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import {Button, Modal, Form, Row, Col} from 'react-bootstrap';
 
-export default function LoginModal({setIsLoggedIn}) {
+export default function LoginModal({login, create}) {
   const [show, setShow] = useState(false);
+  const [button, setButton] = useState(null)
+  const [showUserTaken, setShowUserTaken] = useState(false)
+  const [showBadCredentials, setShowBadCredentials] = useState(false)
+  const [showDisposable, setShowDisposable] = useState(false)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,8 +16,42 @@ export default function LoginModal({setIsLoggedIn}) {
     e.preventDefault();
     const email = e.target.formEmail.value;
     const password = e.target.formPassword.value;
-    setIsLoggedIn()
-    handleClose();
+    if (button === 'login'){
+      login(email, password)
+      .then((isLoggedIn) => {
+        if (!isLoggedIn){
+          setShowBadCredentials(true)
+          setShowUserTaken(false)
+          setShowDisposable(false)
+          return
+        }
+        handleClose();
+      })
+    } else {
+      create(email, password)
+      .then((isLoggedIn) => {
+        if (!isLoggedIn){
+          setShowBadCredentials(false)
+          setShowUserTaken(true)
+          setShowDisposable(false)
+          return
+        } else {
+          fetch(`https://api.usercheck.com/email/${email}?key=2n0aEAzowiX9QTLpjUACKWoHzBnagobp`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data['disposable']) {
+              setShowBadCredentials(false)
+              setShowUserTaken(false)
+              setShowDisposable(true)
+              return
+            } else {
+              hand
+            }
+          })
+        }
+        handleClose();
+      })
+    }
   };
 
   return (
@@ -37,13 +75,24 @@ export default function LoginModal({setIsLoggedIn}) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control id="formPassword" type="password" placeholder='Password' required />
                 </div>
+                {
+                  showBadCredentials && <p style={{ color: 'red' }}>Bad Login</p>
+                }
+
+                {
+                  showUserTaken && <p style={{ color: 'red' }}>User Taken</p>
+                }
+
+                {
+                  showDisposable && <p style={{ color: 'red' }}>This email is associated with disposable emails. Please use a different one</p>
+                }
             </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" form="loginForm" type="submit">
+            <Button variant="secondary" form="loginForm" type="submit" onClick={() => setButton('create')}>
                 Create Account
             </Button>
-            <Button variant="primary" form="loginForm" type="submit">
+            <Button variant="primary" form="loginForm" type="submit" onClick={() => setButton('login')}>
                 Login
             </Button>
         </Modal.Footer>

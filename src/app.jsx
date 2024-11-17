@@ -5,70 +5,65 @@ import '../src/app.css';
 import Store from './components/Store'
 import LoginModal from './components/LoginModal';
 import AddItemModal from './components/AddItemModal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
   
-  let dummyItemList = [
-    {
-      itemName: 'Origami Swan',
-      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
-      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
-      itemPrice: 10,
-      itemPromoCode: 'PROMOCODE',
-      itemLink: 'link.link',
-      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
-      itemViews: 10
-    },
-    {
-      itemName: 'Origami Swan',
-      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
-      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
-      itemPrice: 10,
-      itemPromoCode: 'PROMOCODE',
-      itemLink: 'link.link',
-      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
-      itemViews: 10
-    },
-    {
-      itemName: 'Origami Swan',
-      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
-      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
-      itemPrice: 10,
-      itemPromoCode: 'PROMOCODE',
-      itemLink: 'link.link',
-      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
-      itemViews: 10
-    },
-    {
-      itemName: 'Origami Swan',
-      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
-      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
-      itemPrice: 10,
-      itemPromoCode: 'PROMOCODE',
-      itemLink: 'link.link',
-      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
-      itemViews: 10
-    },
-    {
-      itemName: 'Origami Swan',
-      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
-      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
-      itemPrice: 10,
-      itemPromoCode: 'PROMOCODE',
-      itemLink: 'link.link',
-      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
-      itemViews: 10
-    },
-  ]
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [itemList, setItemList] = useState([...dummyItemList])
+  const [itemList, setItemList] = useState([])
 
-  const handleAddItem = (item) => {
-    setItemList(prevList => [...prevList, item]);  // Use spread operator to add item
-    console.log(itemList);
+  useEffect(() => {getItems() })
+  const handleAddItem = async (item) => {
+    const response = await fetch(`/api/items`, {
+      method: 'post',
+      body: JSON.stringify(item),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    if (response?.status === 200){
+      setIsLoggedIn(true)
+    }
+    getItems()
   }
 
+  async function logIn(email, password) {
+    const response = await fetch(`/api/auth/login`, {
+      method: 'post',
+      body: JSON.stringify( { email: email, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    if (response?.status === 200){
+      return true
+      setIsLoggedIn(true)
+    }
+    return
+  }
+
+  async function createAccount(email, password) {
+    const response = await fetch(`/api/auth/create`, {
+      method: 'post',
+      body: JSON.stringify( {email: email, password: password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      }
+    })
+    if (response?.status === 200){
+      return true
+      setIsLoggedIn(true)
+    }
+  }
+
+  async function getItems() {
+    const response = await fetch(`/api/items`, {
+      method: 'get',
+    })
+    if (response?.status === 200){
+      setItemList(await response.json())
+    }
+  }
   return (
 <BrowserRouter>
 <header>
@@ -89,7 +84,7 @@ export default function App() {
             <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
                     {!isLoggedIn && (
-                        <LoginModal setIsLoggedIn={ () => setIsLoggedIn(true)}/>
+                        <LoginModal login={ (email, password) => logIn(email, password)} create= { (email, password) => createAccount(email, password)} />
                     )}
                     {isLoggedIn && (
                         <button className="nav-link" onClick={ () => setIsLoggedIn(false) }>

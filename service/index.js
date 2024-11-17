@@ -5,7 +5,60 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000
 const uuid = require('uuid')
 app.use(express.json())
 let users = {}
-let items = []
+let dummyItemList = [
+    {
+      itemName: 'Origami Swan',
+      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
+      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
+      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
+      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
+      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
+      itemViews: 10
+    },
+    {
+      itemName: 'Origami Swan',
+      itemFullName: 'Master the Art of Origami - Detailed Instructions, High-Quality Paper, Ideal for Beginners and Experts Alike, Perfect for Creating Intricate Paper Creations, Gift Idea for Craft Lovers',
+      itemImages: ['/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg','/origamiswan.jpeg'],
+      itemPrice: 10,
+      itemPromoCode: 'PROMOCODE',
+      itemLink: 'link.link',
+      itemDescription: 'This comprehensive origami book is designed to offer clear, step-by-step instructions, making it a versatile resource for both beginners and experienced paper folders. Its thoughtfully structured tutorials ensure a smooth learning curve, while the included high-quality, pre-cut paper allows for crisp and precise folds. Each project features detailed diagrams and tips, guiding you to create intricate and beautiful designs with ease. \n The book includes a wide range of models, from simple animals to complex geometric shapes, ensuring something for every skill level. The durable binding and quality pages withstand repeated use, while the eco-friendly materials ensure a sustainable crafting experience. Additionally, the book offers troubleshooting advice for common mistakes, helping users refine their technique for perfect results.',
+      itemViews: 10
+    },
+  ]
+
+let items = dummyItemList
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
@@ -17,24 +70,38 @@ app.use(`/api`, apiRouter)
 
 apiRouter.post(`/auth/create`, async (req, res) => {
     const user = users[req.body.email]
+    console.log(users)
     if (user) {
-        res.status(409).send({ msg: 'Existing user'})
+        return res.status(409).send({ msg: 'Existing user'})
     } else {
+        fetch(`https://api.usercheck.com/email/${email}?key=2n0aEAzowiX9QTLpjUACKWoHzBnagobp`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data['disposable']) {
+              setShowBadCredentials(false)
+              setShowUserTaken(false)
+              setShowDisposable(true)
+            } else {
+              setLogin(true)
+              handleClose();
+        }})
         const user = { email: req.body.email, password: req.body.password, token: uuid.v4() }
         users[user.email] = user
-        res.send({ token: user.token })
+        return res.send({ token: user.token })
     }
 })
 
-apiRouter.post('auth/login', async (req, res) => {
+apiRouter.post('/auth/login', async (req, res) => {
+    console.log(users)
     const user = users[req.body.email]
+    console.log(users)
     if(user) {
-        if (req.bosy.password === user.password) {
+        if (req.body.password === user.password) {
             user.token = uuid.v4()
-            res.send({ token: user.token })
+            return res.send({ token: user.token })
         }
     }
-    res.status(401).send({ msg: 'Unauthorized'})
+    return res.status(401).send({ msg: 'Unauthorized'})
 })
 
 apiRouter.delete('/auth/logout', (req, res) => {
@@ -42,14 +109,15 @@ apiRouter.delete('/auth/logout', (req, res) => {
     if (user) {
         delete user.token
     }
-    res.status(204).end()
+    return res.status(204).end()
 })
 
 apiRouter.get('/items', (_req, res) => {
-    res.send(items)
+    return res.send(items)
 })
 
 apiRouter.post('/items', (req, res) => {
     items.push(req.body)
-    res.send(items)
+    return res.send(items)
 })
+
