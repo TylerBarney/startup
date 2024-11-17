@@ -88,12 +88,10 @@ I used React and Javascript to allow users to interact with the store front and 
 
 ## Service deliverable
 
-➡️ The following is an example of the required information for the `Startup Service` deliverable
+For this deliverable I added backend endpoints that has login functionality and gets/adds items from the store
 
-For this deliverable I added backend endpoints that receives votes and returns the voting totals.
-
-- [x] **Node.js/Express HTTP service** - done!
-- [x] **Static middleware for frontend** - done!
-- [ ] **Calls to third party endpoints** - I didn't have time to implement this. 😔
-- [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for voting.
-- [x] **Frontend calls service endpoints** - I did this using the fetch function.
+- [x] **Node.js/Express HTTP service**
+- [x] **Static middleware for frontend** - This will work for when we deploy to AWS
+- [x] **Calls to third party endpoints** - Calls an endpoint which checks if the email a user signs up with is a spam email
+- [x] **Backend service endpoints** - Placeholders for login that stores the current users and placeholders for the current items in the shop
+- [x] **Frontend calls service endpoints** - Called the backendpoints using fetch
