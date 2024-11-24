@@ -27,6 +27,7 @@ export default function LoginModal({login, create, setLogin}) {
           setShowDisposable(false)
         } else {
           setLogin(true)
+          localStorage.setItem('loggedIn', true)
           handleClose();
         }
       })
@@ -43,6 +44,7 @@ export default function LoginModal({login, create, setLogin}) {
           setShowDisposable(true)
         } else {
           setLogin(true)
+          localStorage.setItem('loggedIn', true)
           handleClose()
         }
       })
