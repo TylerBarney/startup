@@ -4,6 +4,9 @@ const express = require('express');
 const app = express();
 const DB = require('./database.js');
 const authCookieName = 'token';
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() }); // Store files in memory for quick conversion
+
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000
 const uuid = require('uuid')
@@ -64,8 +67,6 @@ let dummyItemList = [
     },
   ]
 
-let items = dummyItemList
-
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
@@ -112,8 +113,13 @@ apiRouter.delete('/auth/logout', (_req, res) => {
   res.status(204).end();
 });
 
-apiRouter.get('/items', (_req, res) => {
+apiRouter.get('/items', async (_req, res) => {
+  const items = await DB.getItems()
+  if (items){
     return res.send(items)
+  } else {
+    return res.send(dummyItemList)
+  }
 })
 
 const secureApiRouter = express.Router()
@@ -128,10 +134,38 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
-secureApiRouter.post('/items', async (req, res) => {
-  await DB.addItem(req.body)
+const fs = require('fs');
+const path = require('path');
+
+
+secureApiRouter.post('/items', upload.array('itemImages'), async (req, res) => {
+  const { itemName, itemFullName, itemPrice, itemPromoCode, itemLink, itemDescription, itemViews } = req.body;
+
+        // Access uploaded files
+        const files = req.files; // Multer adds `files` to the request
+        const base64Images = files.map((file) => {
+            return `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+        });
+
+        // Construct the item data
+        const item = {
+            itemName,
+            itemFullName,
+            itemPrice: parseFloat(itemPrice),
+            itemPromoCode,
+            itemLink,
+            itemDescription,
+            itemViews: parseInt(itemViews),
+            itemImages: base64Images, // Base64 encoded images
+        };
+  await DB.addItem(item);
+
+  res.status(200).send({ msg: 'Item uploaded successfully', item: item });
 })
 
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
     secure: true,

@@ -15,15 +15,35 @@ export default function App() {
 
   useEffect(() => {getItems() })
   const handleAddItem = async (item) => {
-    const response = await fetch(`/api/items`, {
-      method: 'post',
-      body: JSON.stringify(item),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+      const formData = new FormData();
+
+      // Append non-file fields
+      formData.append('itemName', item.itemName);
+      formData.append('itemFullName', item.itemFullName);
+      formData.append('itemPrice', item.itemPrice);
+      formData.append('itemPromoCode', item.itemPromoCode);
+      formData.append('itemLink', item.itemLink);
+      formData.append('itemDescription', item.itemDescription);
+      formData.append('itemViews', item.itemViews);
+
+      // Append each file from the FileList
+      Array.from(item.itemImages).forEach((file) => {
+          formData.append('itemImages', file);
+      });
+
+      // Make the POST request
+      const response = await fetch('/api/items', {
+          method: 'POST',
+          body: formData,
+      });
+
+      if (response.ok) {
+          console.log('Item added successfully');
+          getItems(); // Refresh the items
+      } else {
+          console.error('Failed to add item');
       }
-    })
-    getItems()
-  }
+  };
 
   async function logIn(email, password) {
     const response = await fetch(`/api/auth/login`, {

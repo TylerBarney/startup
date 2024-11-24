@@ -11,7 +11,7 @@ export default function AddItemModal({handleAddItem, isLoggedIn}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const itemName = e.target.formShortItemName.value
-    const itemImages = Array.from(e.target.formItemImage.files).map(file => URL.createObjectURL(file))
+    const itemImages = e.target.formItemImage.files
     const itemDescription = e.target.formItemDescription.value
     const itemPrice = parseFloat(e.target.formItemPrice.value)
     const itemLink = e.target.formItemLink.value

@@ -35,9 +35,14 @@ async function addItem(item) {
   return itemCollection.insertOne(item)
 }
 
+function getItems(){
+   return itemCollection.find({}).toArray()
+}
+
 module.exports = {
   getUser,
   getUserByToken,
   createUser,
   addItem,
+  getItems
 };
