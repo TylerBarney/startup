@@ -118,12 +118,18 @@ apiRouter.get('/items', (_req, res) => {
 
 const secureApiRouter = express.Router()
 apiRouter.use(secureApiRouter)
+secureApiRouter.use(async (req, res, next) => {
+  const authToken = req.cookies[authCookieName];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
 
-apiRouter.post('/items', (req, res) => {
-  const authToken = req.cookies[authCookieName]
-  const user =   
-  items.push(req.body)
-    return res.send(items)
+secureApiRouter.post('/items', async (req, res) => {
+  await DB.addItem(req.body)
 })
 
 function setAuthCookie(res, authToken) {
