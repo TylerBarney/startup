@@ -76,7 +76,6 @@ app.use(`/api`, apiRouter)
 
 apiRouter.post(`/auth/create`, async (req, res) => {
   try {
-    console.log(await DB.getUser(req.body.email))
       if (await DB.getUser(req.body.email)) {
           return res.status(409).send({ msg: 'Existing user' });
       }
@@ -97,14 +96,15 @@ apiRouter.post(`/auth/create`, async (req, res) => {
 })
 
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = users[req.body.email]
-    if(user) {
-        if (req.body.password === user.password) {
-            user.token = uuid.v4()
-            return res.send({ token: user.token })
-        }
+    const user = await DB.getUser(req.body.email);
+    if (user) {
+      if (await bcrypt.compare(req.body.password, user.password)) {
+        setAuthCookie(res, user.token);
+        res.send({ id: user._id });
+        return;
+      }
     }
-    return res.status(401).send({ msg: 'Unauthorized'})
+    res.status(401).send({ msg: 'Unauthorized' });
 })
 
 apiRouter.delete('/auth/logout', (req, res) => {
