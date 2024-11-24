@@ -1,9 +1,15 @@
-const express = require('express')
-const app = express()
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+const express = require('express');
+const app = express();
+const DB = require('./database.js');
+const authCookieName = 'token';
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000
 const uuid = require('uuid')
 app.use(express.json())
+app.use(cookieParser());
+app.set('trust proxy', true);
 let users = {}
 let dummyItemList = [
     {
@@ -69,21 +75,25 @@ app.use(`/api`, apiRouter)
 
 
 apiRouter.post(`/auth/create`, async (req, res) => {
-    const user = users[req.body.email]
-    if (user) {
-        return res.status(409).send({ msg: 'Existing user'})
-    } else {
-        fetch(`https://api.usercheck.com/email/${req.body.email}?key=2n0aEAzowiX9QTLpjUACKWoHzBnagobp`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data['disposable']) {
-                return res.status(406).send({ msg: 'Bad email'})
-            } else {
-                const user = { email: req.body.email, password: req.body.password, token: uuid.v4() }
-                users[user.email] = user
-                return res.send({ token: user.token })
-        }})
-    }
+  try {
+    console.log(await DB.getUser(req.body.email))
+      if (await DB.getUser(req.body.email)) {
+          return res.status(409).send({ msg: 'Existing user' });
+      }
+      // const response = await fetch(`https://api.usercheck.com/email/${req.body.email}?key=2n0aEAzowiX9QTLpjUACKWoHzBnagobp`);
+      // const data = await response.json();
+
+      // if (data['disposable']) {
+      //     return res.status(406).send({ msg: 'Bad email' });
+      // }
+      const user = await DB.createUser(req.body.email, req.body.password);
+      setAuthCookie(res, user.token)
+
+      return res.send({ id: user._id });
+  } catch (error) {
+      console.error('Error during registration:', error);
+      return res.status(500).send({ msg: 'Internal server error' });
+  }
 })
 
 apiRouter.post('/auth/login', async (req, res) => {
@@ -110,8 +120,21 @@ apiRouter.get('/items', (_req, res) => {
     return res.send(items)
 })
 
+const secureApiRouter = express.Router()
+apiRouter.use(secureApiRouter)
+
 apiRouter.post('/items', (req, res) => {
-    items.push(req.body)
+  const authToken = req.cookies[authCookieName]
+  const user =   
+  items.push(req.body)
     return res.send(items)
 })
+
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
