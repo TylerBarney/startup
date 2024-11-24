@@ -95,3 +95,14 @@ For this deliverable I added backend endpoints that has login functionality and 
 - [x] **Calls to third party endpoints** - Calls an endpoint which checks if the email a user signs up with is a spam email
 - [x] **Backend service endpoints** - Placeholders for login that stores the current users and placeholders for the current items in the shop
 - [x] **Frontend calls service endpoints** - Called the backendpoints using fetch
+
+## DB/Login deliverable
+
+For this deliverable I stored login info and shop items in a mongo database 
+
+- [x] **MongoDB Atlas database created** - done!
+- [x] **Stores data in MongoDB** - Also stores items in the shop
+- [x] **User registration** - Creates a new account in the database.
+- [x] **existing user** - Existing users can create new items in the shop.
+- [x] **Use MongoDB to store credentials** - Stores encrypted credentials.
+- [x] **Restricts functionality** - You can't create items if you aren't logged in but you can view the shop
