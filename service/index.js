@@ -8,12 +8,11 @@ const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() }); // Store files in memory for quick conversion
 
 
-const port = process.argv.length > 2 ? process.argv[2] : 3000
+const port = process.argv.length > 2 ? process.argv[2] : 3001
 const uuid = require('uuid')
 app.use(express.json())
 app.use(cookieParser());
 app.set('trust proxy', true);
-let users = {}
 let dummyItemList = [
     {
       itemName: 'Origami Swan',

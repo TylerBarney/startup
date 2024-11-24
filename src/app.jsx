@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
   
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('loggedIn'))
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [itemList, setItemList] = useState([])
   const [token, setToken] = useState('')
 
@@ -87,7 +87,6 @@ export default function App() {
       }
     })
     setToken('')
-    localStorage.setItem('loggedIn', false)
     setIsLoggedIn(false)
   }
 
