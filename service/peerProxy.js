@@ -31,11 +31,11 @@ function peerProxy(httpServer, DB) {
       }
 
       console.log('Parsed itemId:', parsedData.itemId);
-      DB.updateItemViews(parsedData.itemId);
-
-      connections.forEach((c) => {
+      DB.updateItemViews(parsedData.itemId).then((itemView) => {
+        connections.forEach((c) => {
         console.log('forwarding message to', c.id);
-        c.ws.send(JSON.stringify(parsedData));
+          c.ws.send(JSON.stringify({itemId: parsedData.itemId, itemViews: itemView}));
+        });
       });
     });
 

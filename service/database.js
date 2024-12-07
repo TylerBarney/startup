@@ -46,11 +46,12 @@ async function addItem(item) {
 
 async function updateItemViews(itemId) {
   await itemCollection.updateOne({ itemId }, { $inc: { itemViews: 1 } });
-}
+  return itemCollection.findOne({ itemId }).itemViews;
 
 function getItems(){
    return itemCollection.find({}).toArray()
 }
+
 
 module.exports = {
   getUser,
