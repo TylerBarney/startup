@@ -106,3 +106,12 @@ For this deliverable I stored login info and shop items in a mongo database
 - [x] **existing user** - Existing users can create new items in the shop.
 - [x] **Use MongoDB to store credentials** - Stores encrypted credentials.
 - [x] **Restricts functionality** - You can't create items if you aren't logged in but you can view the shop
+
+## WebSocket deliverable
+
+For this deliverable I used webSocket to update the views on each item in realtime. When a user is logged in, they can click on an item and the view count will be updated for all users.
+
+- [x] **Backend listens for WebSocket connection** - backend listens for websocket connections and updates the view count in the database when a user click event is sent over the socket
+- [x] **Frontend makes WebSocket connection** - Every user is connected to the websocket and can send click events to the backend
+- [x] **Data sent over WebSocket connection** - When a user clicks on an item, a click event is sent to the backend containing the itemId and the new view count. When the backend receives this it updates the view count in the database and sends the updated view count back to the frontend.
+- [x] **WebSocket data displayed** - All views are updated in realtime on the frontend.
