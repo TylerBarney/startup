@@ -109,7 +109,7 @@ For this deliverable I stored login info and shop items in a mongo database
 
 ## WebSocket deliverable
 
-For this deliverable I used webSocket to update the views on each item in realtime. When a user is logged in, they can click on an item and the view count will be updated for all users.
+For this deliverable I used webSocket to update the views on each item in realtime. When a user is logged in, they can click on an item and the view count will be updated for all users. (Note: Everytime a user clicks on an item the view count is updated by one despite if the user has already clicked on the item before.)
 
 - [x] **Backend listens for WebSocket connection** - backend listens for websocket connections and updates the view count in the database when a user click event is sent over the socket
 - [x] **Frontend makes WebSocket connection** - Every user is connected to the websocket and can send click events to the backend
