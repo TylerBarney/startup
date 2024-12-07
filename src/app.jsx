@@ -13,10 +13,7 @@ export default function App() {
   const [token, setToken] = useState('')
 
   const handleViewEvent = async (event) => {
-    console.log('handling view event')
-    console.log(event)
     try {
-      console.log(event.itemViews)
       if (event.itemId) {
         setItemList(prevList => 
           prevList.map(item => 
@@ -25,8 +22,6 @@ export default function App() {
               : item
           )
         );
-        console.log('itemList updated')
-        console.log(itemList)
       }
     } catch (error) {
       console.error('Error parsing websocket message:', error);

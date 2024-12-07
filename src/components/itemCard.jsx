@@ -6,7 +6,7 @@ import { useState } from 'react';
 import {Button, Modal, Form, Row, Col, Carousel} from 'react-bootstrap';
 import { viewWebsocket } from '../viewWebsocket';
 
-export default function ItemCard({ item, socket }) {
+export default function ItemCard({ item }) {
     const [show, setShow] = useState(false);
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex) => {
@@ -16,7 +16,9 @@ export default function ItemCard({ item, socket }) {
     const handleClose = () => setShow(false);
     const handleShow = () => {
         setShow(true);
-        viewWebsocket.send(item.itemId, item.itemViews);
+        if (isLoggedIn) {
+            viewWebsocket.send(item.itemId, item.itemViews);
+        }
     };
     return (
     <>

@@ -20,7 +20,6 @@ function peerProxy(httpServer, DB) {
     connections.push(connection);
 
     ws.on('message', function message(data) {
-      console.log('Received data:', data);
       let parsedData;
       try {
         parsedData = JSON.parse(data);
@@ -28,12 +27,8 @@ function peerProxy(httpServer, DB) {
         console.error('Error parsing JSON:', error);
         return;
       }
-
-      console.log('Parsed itemId:', parsedData.itemId);
-      console.log('connections: ', connections.length)
       DB.updateItemViews(parsedData.itemId).then((itemView) => {
         connections.forEach((c) => {
-          console.log(itemView);
           c.ws.send(JSON.stringify({itemId: parsedData.itemId, itemViews: itemView}));
         });
       });
