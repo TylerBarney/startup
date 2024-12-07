@@ -31,9 +31,10 @@ function peerProxy(httpServer, DB) {
       }
 
       console.log('Parsed itemId:', parsedData.itemId);
+      console.log('connections: ', connections.length)
       DB.updateItemViews(parsedData.itemId).then((itemView) => {
         connections.forEach((c) => {
-        console.log('forwarding message to', c.id);
+          console.log(itemView);
           c.ws.send(JSON.stringify({itemId: parsedData.itemId, itemViews: itemView}));
         });
       });

@@ -46,8 +46,10 @@ async function addItem(item) {
 
 async function updateItemViews(itemId) {
   await itemCollection.updateOne({ itemId }, { $inc: { itemViews: 1 } });
-  return itemCollection.findOne({ itemId }).itemViews;
-
+  const item = await itemCollection.findOne({ itemId });
+  let itemViews = item.itemViews
+  return itemViews;
+}
 function getItems(){
    return itemCollection.find({}).toArray()
 }

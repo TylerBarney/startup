@@ -6,32 +6,36 @@ import Store from './components/Store'
 import LoginModal from './components/LoginModal';
 import AddItemModal from './components/AddItemModal';
 import { useState, useEffect } from 'react';
-import useWebSocket from 'react-use-websocket';
+
 export default function App() {
-  const socket = useWebSocket(`ws://${window.location.hostname}:${window.location.port}/ws`);
+  let port = window.location.port;
+  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+  const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [itemList, setItemList] = useState([])
   const [token, setToken] = useState('')
 
   useEffect(() => {getItems() }, [])
 
-  socket.onMessage((event) => {
+  socket.onmessage = async (event) => {
     try {
       const data = JSON.parse(event.data);
-      console.log(data)
-      if (data.type === 'view' && data.itemId) {
+      console.log(data.itemViews)
+      if (data.itemId) {
         setItemList(prevList => 
           prevList.map(item => 
             item.itemId === data.itemId 
-              ? {...item, itemViews: item.itemViews + 1}
+              ? {...item, itemViews: data.itemViews}
               : item
           )
         );
+        console.log('itemList updated')
+        console.log(itemList)
       }
     } catch (error) {
       console.error('Error parsing websocket message:', error);
     }
-  });
+  };
   const handleAddItem = async (item) => {
       const formData = new FormData();
 
