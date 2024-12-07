@@ -34,10 +34,8 @@ function peerProxy(httpServer, DB) {
       DB.updateItemViews(parsedData.itemId);
 
       connections.forEach((c) => {
-        if (c.id === connection.id) { // Corrected to exclude sender
-          console.log('forwarding message to', c.id);
-          c.ws.send(JSON.stringify(parsedData)); // Send as JSON string
-        }
+        console.log('forwarding message to', c.id);
+        c.ws.send(JSON.stringify(parsedData));
       });
     });
 

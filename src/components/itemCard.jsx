@@ -6,8 +6,7 @@ import { useState } from 'react';
 import {Button, Modal, Form, Row, Col, Carousel} from 'react-bootstrap';
 import useWebSocket from 'react-use-websocket';
 
-export default function ItemCard({ item }) {
-    const socket = useWebSocket(`ws://${window.location.hostname}:${window.location.port}/ws`);
+export default function ItemCard({ item, socket }) {
     const { sendMessage } = socket;
     const [show, setShow] = useState(false);
     const [index, setIndex] = useState(0);
@@ -22,10 +21,6 @@ export default function ItemCard({ item }) {
             type: 'view',
             itemId: item.itemId
         }));
-    };
-    socket.onmessage = (message) => {
-        console.log('message received');
-        console.log(message);
     };
     return (
     <>

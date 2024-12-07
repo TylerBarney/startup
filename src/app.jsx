@@ -8,12 +8,30 @@ import AddItemModal from './components/AddItemModal';
 import { useState, useEffect } from 'react';
 import useWebSocket from 'react-use-websocket';
 export default function App() {
-  
+  const socket = useWebSocket(`ws://${window.location.hostname}:${window.location.port}/ws`);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [itemList, setItemList] = useState([])
   const [token, setToken] = useState('')
 
   useEffect(() => {getItems() }, [])
+
+  socket.onMessage((event) => {
+    try {
+      const data = JSON.parse(event.data);
+      console.log(data)
+      if (data.type === 'view' && data.itemId) {
+        setItemList(prevList => 
+          prevList.map(item => 
+            item.itemId === data.itemId 
+              ? {...item, itemViews: item.itemViews + 1}
+              : item
+          )
+        );
+      }
+    } catch (error) {
+      console.error('Error parsing websocket message:', error);
+    }
+  });
   const handleAddItem = async (item) => {
       const formData = new FormData();
 
@@ -133,7 +151,7 @@ export default function App() {
 </header>
 
 <Routes>
-  <Route path='/' element={<Store itemList={itemList} />} exact />
+  <Route path='/' element={<Store itemList={itemList} socket={socket} />} exact />
   <Route path='*' element={<NotFound />} />
 </Routes>
 
