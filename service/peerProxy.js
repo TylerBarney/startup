@@ -19,7 +19,6 @@ function peerProxy(httpServer, DB) {
     const connection = { id: uuid.v4(), alive: true, ws: ws };
     connections.push(connection);
 
-    // Forward messages to everyone except the sender
     ws.on('message', function message(data) {
       console.log('Received data:', data);
       let parsedData;

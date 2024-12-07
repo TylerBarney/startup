@@ -4,7 +4,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../app.css';
 import { useState } from 'react';
 import {Button, Modal, Form, Row, Col, Carousel} from 'react-bootstrap';
-import useWebSocket from 'react-use-websocket';
+import { viewWebsocket } from '../viewWebsocket';
 
 export default function ItemCard({ item, socket }) {
     const [show, setShow] = useState(false);
@@ -16,10 +16,7 @@ export default function ItemCard({ item, socket }) {
     const handleClose = () => setShow(false);
     const handleShow = () => {
         setShow(true);
-        socket.send(JSON.stringify({
-            type: 'view',
-            itemId: item.itemId
-        }));
+        viewWebsocket.send(item.itemId, item.itemViews);
     };
     return (
     <>

@@ -6,18 +6,13 @@ import Store from './components/Store'
 import LoginModal from './components/LoginModal';
 import AddItemModal from './components/AddItemModal';
 import { useState, useEffect } from 'react';
-
+import { viewWebsocket } from './viewWebsocket';
 export default function App() {
-  let port = window.location.port;
-  const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-  const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [itemList, setItemList] = useState([])
   const [token, setToken] = useState('')
 
-  useEffect(() => {getItems() }, [])
-
-  socket.onmessage = async (event) => {
+  const handleViewEvent = async (event) => {
     try {
       const data = JSON.parse(event.data);
       console.log(data.itemViews)
@@ -36,6 +31,15 @@ export default function App() {
       console.error('Error parsing websocket message:', error);
     }
   };
+
+  useEffect(() => {
+    getItems()
+    viewWebsocket.addHandler(handleViewEvent)
+    return () => {
+      viewWebsocket.removeHandler(handleViewEvent)
+    }
+  }, [])
+
   const handleAddItem = async (item) => {
       const formData = new FormData();
 
@@ -155,7 +159,7 @@ export default function App() {
 </header>
 
 <Routes>
-  <Route path='/' element={<Store itemList={itemList} socket={socket} />} exact />
+  <Route path='/' element={<Store itemList={itemList} />} exact />
   <Route path='*' element={<NotFound />} />
 </Routes>
 
