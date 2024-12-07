@@ -13,14 +13,15 @@ export default function App() {
   const [token, setToken] = useState('')
 
   const handleViewEvent = async (event) => {
+    console.log('handling view event')
+    console.log(event)
     try {
-      const data = JSON.parse(event.data);
-      console.log(data.itemViews)
-      if (data.itemId) {
+      console.log(event.itemViews)
+      if (event.itemId) {
         setItemList(prevList => 
           prevList.map(item => 
-            item.itemId === data.itemId 
-              ? {...item, itemViews: data.itemViews}
+            item.itemId === event.itemId 
+              ? {...item, itemViews: event.itemViews}
               : item
           )
         );
