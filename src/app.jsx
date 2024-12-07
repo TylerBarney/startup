@@ -6,14 +6,14 @@ import Store from './components/Store'
 import LoginModal from './components/LoginModal';
 import AddItemModal from './components/AddItemModal';
 import { useState, useEffect } from 'react';
-
+import useWebSocket from 'react-use-websocket';
 export default function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [itemList, setItemList] = useState([])
   const [token, setToken] = useState('')
 
-  useEffect(() => {getItems() })
+  useEffect(() => {getItems() }, [])
   const handleAddItem = async (item) => {
       const formData = new FormData();
 

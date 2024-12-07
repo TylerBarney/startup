@@ -5,7 +5,8 @@ const app = express();
 const DB = require('./database.js');
 const authCookieName = 'token';
 const multer = require('multer');
-const upload = multer({ storage: multer.memoryStorage() }); // Store files in memory for quick conversion
+const upload = multer({ storage: multer.memoryStorage() });
+const { peerProxy } = require('./peerProxy.js');
 
 
 const port = process.argv.length > 2 ? process.argv[2] : 3001
@@ -66,9 +67,10 @@ let dummyItemList = [
     },
   ]
 
-app.listen(port, () => {
+const httpServer = app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 })
+peerProxy(httpServer, DB)
 app.use(express.static('public'))
 var apiRouter = express.Router()
 app.use(`/api`, apiRouter)
@@ -148,6 +150,7 @@ secureApiRouter.post('/items', upload.array('itemImages'), async (req, res) => {
 
         // Construct the item data
         const item = {
+            itemId: uuid.v4(),
             itemName,
             itemFullName,
             itemPrice: parseFloat(itemPrice),

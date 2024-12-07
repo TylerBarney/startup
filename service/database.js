@@ -44,6 +44,10 @@ async function addItem(item) {
   return itemCollection.insertOne(item)
 }
 
+async function updateItemViews(itemId) {
+  await itemCollection.updateOne({ itemId }, { $inc: { itemViews: 1 } });
+}
+
 function getItems(){
    return itemCollection.find({}).toArray()
 }
@@ -53,5 +57,6 @@ module.exports = {
   getUserByToken,
   createUser,
   addItem,
-  getItems
+  getItems,
+  updateItemViews
 };

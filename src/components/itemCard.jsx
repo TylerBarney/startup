@@ -4,9 +4,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../app.css';
 import { useState } from 'react';
 import {Button, Modal, Form, Row, Col, Carousel} from 'react-bootstrap';
+import useWebSocket from 'react-use-websocket';
 
 export default function ItemCard({ item }) {
-    
+    const socket = useWebSocket(`ws://${window.location.hostname}:${window.location.port}/ws`);
+    const { sendMessage } = socket;
     const [show, setShow] = useState(false);
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex) => {
@@ -14,7 +16,17 @@ export default function ItemCard({ item }) {
     };
   
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true);
+        sendMessage(JSON.stringify({
+            type: 'view',
+            itemId: item.itemId
+        }));
+    };
+    socket.onmessage = (message) => {
+        console.log('message received');
+        console.log(message);
+    };
     return (
     <>
         <div className="card" onClick={handleShow}>
