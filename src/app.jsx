@@ -155,7 +155,7 @@ export default function App() {
 </header>
 
 <Routes>
-  <Route path='/' element={<Store itemList={itemList} />} exact />
+  <Route path='/' element={<Store itemList={itemList} isLoggedIn={isLoggedIn} />} exact />
   <Route path='*' element={<NotFound />} />
 </Routes>
 
